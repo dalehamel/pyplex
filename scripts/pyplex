@@ -4,8 +4,8 @@ import argparse
 try:
     from pyplex.core import main
 except:
-#package hasn't been installed yet, so run from localdir
-#useful for testing
+    #package hasn't been installed yet, so run from localdir
+    #useful for testing
     import sys,os
     path= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     sys.path.append(path)
