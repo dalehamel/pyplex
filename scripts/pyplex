@@ -3,22 +3,22 @@
 import argparse
 try:
     from pyplex.core import main
-except:
-#package hasn't been installed yet, so run from localdir
-#useful for testing
+except ImportError:
+    #package hasn't been installed yet, so run from localdir
+    #useful for testing
     import sys,os
     path= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     sys.path.append(path)
     from pyplex.core import main
-
+finally:
     from pyplex.plexapi.myplex import storeAuthentication
-
 
 def storeAuthdata( user, password):
     if user != None and password != None:
         storeAuthentication(user, password)
     elif user !=None or password != None:
         print "Both username and password must be provided to be saved"
+    exit(1)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='A daemon to listen for UDP plex playback requests, and relay them to OMXPlayer')
